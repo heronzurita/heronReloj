@@ -78,226 +78,226 @@ int socket_fd;
     }
     else
     {
-         int c = (int) getpid ();
-         pid_hijo = fork ();
-        if(pid_hijo==0)
-        {
-         	int d = (int) getpid ();
-            	int i =0;
-                do
-                { 
-                    bzero(buffer,256);
-                    n = read(socket_fd,buffer,255);
-                    fd = open(myfifo, O_WRONLY);
+     int c = (int) getpid ();
+    pid_hijo = fork ();
+    if(pid_hijo==0)
+    {
+    int d = (int) getpid ();
+    int i =0;
+    do
+    { 
+         bzero(buffer,256);
+         n = read(socket_fd,buffer,255);
+         fd = open(myfifo, O_WRONLY);
                     
-                    switch(buffer[0])
-                    {
-                        case '0':
-                        	if(i>1)
-                        	{
-                            	write(fd, "0", sizeof("0"));
-                        	}
-                        	else
-                        	{
-                        		i++;
-                        	}
-                        break;
-                        case '1':
-                        	if(i>1)
-                        	{
-                            	write(fd, "1", sizeof("1"));
-                            }
-                            else
-                            {
-                            	i++;
-                            }
-                        break;
-                        case '2':
-                        	if(i>1)
-                        	{
-                            	write(fd, "2", sizeof("2"));
-                            }
-                            else
-                            {
-                            	i++;
-                            }
-                        break;
-                        case '3':
-                        	if(i>1)
-                        	{
-                            	write(fd, "3", sizeof("3"));
-                            }
-                            else
-                            {
-                            	i++;
-                            }
-                        break;
-                        case '4':
-                        	if(i>1)
-                        	{
-                            	write(fd, "4", sizeof("4"));
-                            }
-                            else
-                            {
-                            	i++;
-                            }
-                        break;
-                        case '5':
-                        	if(i>1)
-                        	{
-                            	write(fd, "5", sizeof("5"));
-                            }
-                            else
-                            {
-                            	i++;
-                            }
-                        break;
-                        case '6':
-                        	if(i>1)
-                        	{
-                            	write(fd, "6", sizeof("6"));
-                            }
-                            else
-                            {
-                            	i++;
-                            }
-                        break;
-                        case '7':
-                        	if(i>1){
-                            	write(fd, "7", sizeof("7"));
-                            }else{i++;}
-                        break;
-                        case '8':
-                        	if(i>1){
-                            	write(fd, "8", sizeof("8"));
-                            }else{i++;}
-                        break;
-                        case '9':
-                        	if(i>1){
-                            write(fd, "9", sizeof("9"));
-                            }else{i++;}
-                        break;
-                    }
-                    close(fd);
-                    if (signal(SIGINT, cerrar_socket) == SIG_ERR)
+         switch(buffer[0])
+    {
+    case '0':
+    if(i>1)
+    {
+    write(fd, "0", sizeof("0"));
+    }
+    else
+    {
+    	i++;
+    }
+    break;
+    case '1':
+    if(i>1)
+    {
+     	write(fd, "1", sizeof("1"));
+    }
+     else
+   {
+    	i++;
+    }
+    break;
+    case '2':
+    if(i>1)
+    {
+    	write(fd, "2", sizeof("2"));
+    }
+    else
+    {
+    	i++;
+    }
+    break;
+    case '3':
+    if(i>1)
+    {
+    	write(fd, "3", sizeof("3"));
+    }
+    else
+    {
+    	i++;
+    }
+    break;
+    case '4':
+    if(i>1)
+    {
+    	write(fd, "4", sizeof("4"));
+    }
+    else
+    {
+    	i++;
+     }
+    break;
+    case '5':
+    if(i>1)
+    {
+    	write(fd, "5", sizeof("5"));
+    }
+    else
+    {
+    	i++;
+    }
+    break;
+    case '6':
+    if(i>1)
+    {
+    	write(fd, "6", sizeof("6"));
+    }
+    else
+    {
+    	i++;
+    }
+    break;
+    case '7':
+    if(i>1){
+    	write(fd, "7", sizeof("7"));
+    }else{i++;}
+    break;
+    case '8':
+    if(i>1){
+    	write(fd, "8", sizeof("8"));
+    }else{i++;}
+    break;
+    case '9':
+    if(i>1){
+    write(fd, "9", sizeof("9"));
+    }else{i++;}
+    break;
+     }
+    close(fd);
+        if (signal(SIGINT, cerrar_socket) == SIG_ERR)
                     {
 	  					printf("\nNO SE ENCONTRÓ LA SEÑAL\n");
                     }
                 }while (bandera==1);   
         }
-        else{
-           	int e = (int) getpid ();
-           	int j=0;
-           	do
-           	{ 
-                fd = open(myfifo, O_RDONLY);
-                read(fd, buf, BUFFERMAX);
-                char a = buf[0];
-                switch(a)
-                {
-                    case '0':
-                      	if(j>1)
-                       	{
-                           	system("display -remote 0.jpg");
-      	                }
-                        else
-                        {
-                          	j++;
-                        }
-                            break;
-                    case '1':
-                       	if(j>1)
-                       	{
-                           	system("display -remote 1.jpg");
-                        }
-                        else
-                        {
-                           	j++;
-                        }
-                            break;
-                        case '2':
-                        	if(j>1)
-                        	{
-	                            system("display -remote 2.jpg");
-                            }
-                            else
-                            {
-                            	j++;
-                            }
-                            break;
-                        case '3':
-                        	if(j>1)
-                        	{
-                            	system("display -remote 3.jpg");
-                            }
-                            else
-                            {
-                            	j++;
-                            }
-                            break;
-                        case '4':
-                        	if(j>1)
-                        	{
-                            	system("display -remote 4.jpg");
-                            }
-                            else
-                            {
-                            	j++;
-                            }
-                            break;
-                        case '5':
-                        	if(j>1)
-                        	{
-                            	system("display -remote 5.jpg");
-                            }
-                            else
-                            {
-                            	j++;
-                            }
-                            break;
-                        case '6':
-                        	if(j>1)
-                        	{
-                            	system("display -remote 6.jpg");
-                            }
-                            else
-                            {
-                            	j++;
-                            }
-                            break;
-                        case '7':
-                        	if(j>1)
-                        	{
-                            	system("display -remote 7.jpg");
-                            }
-                            else
-                            {
-                            	j++;
-                            }
-                            break;
-                        case '8':
-                        	if(j>1)
-                        	{
-	                            system("display -remote 8.jpg");
-                            }
-                            else
-                            {
-                            	j++;
-                            }
-                            break;
-                        case '9':
-                        	if(j>1)
-                        	{
-                            	system("display -remote 9.jpg");
-                            }
-                            else
-                            {
-                            	j++;
-                            }
-                            break;
-                    }
-                    close(fd);
-                    if (signal(SIGINT, cerrar_socket) == SIG_ERR)
+    else{
+    int e = (int) getpid ();
+    int j=0;
+        do
+        { 
+         fd = open(myfifo, O_RDONLY);
+         read(fd, buf, BUFFERMAX);
+         char a = buf[0];
+     switch(a)
+    {
+    case '0':
+    if(j>1)
+    {
+       	system("display -remote 0.jpg");
+    }
+    else
+    {
+      	j++;
+    }
+        break;
+    case '1':
+    if(j>1)
+    {
+       	system("display -remote 1.jpg");
+    }
+    else
+    {
+       	j++;
+    }
+        break;
+    case '2':
+    if(j>1)
+    {
+	    system("display -remote 2.jpg");
+    }
+    else
+    {
+    	j++;
+    }
+    break;
+    case '3':
+    if(j>1)
+    {
+    	system("display -remote 3.jpg");
+    }
+    else
+    {
+    	j++;
+    }
+    break;
+    case '4':
+    if(j>1)
+    {
+    	system("display -remote 4.jpg");
+    }
+    else
+    {
+    	j++;
+    }
+    break;
+    case '5':
+    if(j>1)
+    {
+    	system("display -remote 5.jpg");
+    }
+    else
+    {
+    	j++;
+    }
+    break;
+    case '6':
+    if(j>1)
+    {
+    	system("display -remote 6.jpg");
+    }
+    else
+    {
+    	j++;
+    }
+    break;
+    case '7':
+    if(j>1)
+    {
+    	system("display -remote 7.jpg");
+    }
+    else
+    {
+    	j++;
+    }
+    break;
+    case '8':
+    if(j>1)
+    {
+	    system("display -remote 8.jpg");
+    }
+    else
+    {
+    	j++;
+    }
+    break;
+    case '9':
+    if(j>1)
+    {
+    	system("display -remote 9.jpg");
+    }
+    else
+    {
+    j++;
+    }
+    break;
+    }
+        close(fd);
+            if (signal(SIGINT, cerrar_socket) == SIG_ERR)
                     {
 	  					printf("\nLa señal no puede ser cachada\n");
                     }
