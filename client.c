@@ -66,7 +66,6 @@ int socket_fd;
     	NULL
     };
 
-     int init = 0;
      
      pid_t pid_hijo;
      pid_hijo = fork ();
@@ -310,7 +309,7 @@ void cerrar_socket(int signo)
 {
   if (signo == SIGINT)
   {
-    printf("Recibio un comando SIGINT\n");
+    printf("Se recibio una señal.\n");
     close(socket_fd);
     exit(1);
     bandera++;bandera2++;

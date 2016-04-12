@@ -38,7 +38,7 @@ serv_addr.sin_port = htons(numeropuerto             );
      
      listen(sockfd,5);
      clilen = sizeof(cli_addr);
-    while(i<1){
+    while(i<4){
         if(i==0){
         socketfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
         if (socketfd < 0){
@@ -48,7 +48,7 @@ serv_addr.sin_port = htons(numeropuerto             );
         }
         }
 
-        /*
+        
      if(i==1){
      socketfd2 = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
      if (socketfd2 < 0){
@@ -66,11 +66,11 @@ serv_addr.sin_port = htons(numeropuerto             );
             if (socketfd4 < 0){
                 error("ERROR EN ACEPTAR");
             }else{i++;printf("%d\n", i);}
-        }*/
+        }
 
 
      }
-     if (i==1){
+     if (i==4){
          do{
             time_t epoch_time;
             struct tm *tm_p;
@@ -86,10 +86,10 @@ serv_addr.sin_port = htons(numeropuerto             );
             char umin[] = {(min%10)+48};
             char useg[]  = {(seg%10)+48};
             
-            n = write(socketfd,useg,1);
-            /*n2 = write(socketfd2,umin,1);
+            n = write(socketfd,dmin,1);
+            n2 = write(socketfd2,umin,1);
             n3 = write(socketfd3,dseg,1);
-            n4 = write(socketfd4,useg,1);*/
+            n4 = write(socketfd4,useg,1);
             Esperar (1);
          }while(1==1);
     }
